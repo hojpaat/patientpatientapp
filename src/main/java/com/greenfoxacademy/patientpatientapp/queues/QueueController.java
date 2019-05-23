@@ -14,8 +14,4 @@ public class QueueController {
     this.queueServiceImpl = queueServiceImpl;
   }
 
-  @GetMapping("/myqueue")
-  public Queue getQueue(String name) {
-   // return queueServiceImpl.getUsersQueue(name);
-  }
 }

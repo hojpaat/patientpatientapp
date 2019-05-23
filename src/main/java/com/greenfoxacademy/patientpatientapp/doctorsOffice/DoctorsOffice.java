@@ -23,8 +23,8 @@ public class DoctorsOffice {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String address;
-  
-  @OneToOne(mappedBy = "doctorsOffice", cascade = CascadeType.PERSIST)
+
+  @OneToOne
   private ApplicationUser user;
   
 }
