@@ -21,7 +21,7 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApplicationUser {
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   long id;
@@ -29,7 +29,7 @@ public class ApplicationUser {
   String password;
   String role;
   String email;
-  
+
   @JsonIgnore
   @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
   private DoctorsOffice doctorsOffice;
