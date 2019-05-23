@@ -36,6 +36,6 @@ public class UserController {
   
   @GetMapping("/doctors")
   public ResponseEntity getDoctors(){
-    return ResponseEntity.status(200).body("");
+    return ResponseEntity.status(200).body(doctorsOfficeService.getDoctors());
   }
 }

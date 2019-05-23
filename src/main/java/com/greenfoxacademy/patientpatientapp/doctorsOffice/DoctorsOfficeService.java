@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface DoctorsOfficeService {
   DoctorsOffice saveDoctorsOffice(DoctorsOffice doctorsOffice) throws DoctorsOfficeException;
-  List<DoctorsOffice> getDoctors();
+  
+  List<DoctorsOffice> getDoctorsOffices();
+  
+  List<DoctorDto> getDoctors();
 }

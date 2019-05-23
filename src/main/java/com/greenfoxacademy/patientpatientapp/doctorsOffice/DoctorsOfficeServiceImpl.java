@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,7 +29,19 @@ public class DoctorsOfficeServiceImpl implements DoctorsOfficeService {
     throw new DoctorsOfficeException("Doctor's Office already registered!");
   }
   
-  public List<DoctorsOffice> getDoctors(){
+  public List<DoctorsOffice> getDoctorsOffices(){
     return doctorsOfficeRepository.findAll();
+  }
+  
+  public List<DoctorDto> getDoctors(){
+    List<DoctorDto> doctors = new ArrayList<>();
+    getDoctorsOffices().forEach(doctorsOffice -> {
+      doctors.add(createDoctorDto(doctorsOffice));
+    });
+    return doctors;
+  }
+  
+  public DoctorDto createDoctorDto(DoctorsOffice doctorsOffice){
+    return new DoctorDto(doctorsOffice.getUser().getName());
   }
 }
