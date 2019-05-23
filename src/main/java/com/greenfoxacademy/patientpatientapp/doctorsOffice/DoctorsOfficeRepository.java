@@ -9,4 +9,5 @@ import java.util.List;
 public interface DoctorsOfficeRepository extends CrudRepository<DoctorsOffice, Long> {
   DoctorsOffice findById(long id);
   DoctorsOffice findByAddress(String address);
+  List<DoctorsOffice> findAll();
 }

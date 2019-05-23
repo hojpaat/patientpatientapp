@@ -8,6 +8,7 @@ import com.greenfoxacademy.patientpatientapp.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -31,5 +32,10 @@ public class UserController {
   public ResponseEntity addUser(@RequestBody ApplicationUser user)
           throws UserException {
     return ResponseEntity.ok().body(userService.saveUser(user));
+  }
+  
+  @GetMapping("/doctors")
+  public ResponseEntity getDoctors(){
+    return ResponseEntity.status(200).body(doctorsOfficeService.getDoctors());
   }
 }
