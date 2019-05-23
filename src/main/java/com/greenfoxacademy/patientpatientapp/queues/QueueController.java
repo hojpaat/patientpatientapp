@@ -13,5 +13,4 @@ public class QueueController {
   public QueueController(QueueServiceImpl queueServiceImpl) {
     this.queueServiceImpl = queueServiceImpl;
   }
-
 }
