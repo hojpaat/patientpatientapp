@@ -24,4 +24,11 @@ public class ApplicationUser {
   String password;
   String role;
   String email;
+
+  public ApplicationUser(String name, String password, String role, String email) {
+    this.name = name;
+    this.password = password;
+    this.role = role;
+    this.email = email;
+  }
 }
