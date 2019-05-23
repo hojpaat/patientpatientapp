@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
+import java.util.List;
 
 @Service
 public class DoctorsOfficeServiceImpl implements DoctorsOfficeService {
@@ -25,5 +26,9 @@ public class DoctorsOfficeServiceImpl implements DoctorsOfficeService {
       return doctorsOfficeRepository.save(doctorsOffice);
     }
     throw new DoctorsOfficeException("Doctor's Office already registered!");
+  }
+  
+  public List<DoctorsOffice> getDoctors(){
+    return doctorsOfficeRepository.findAll();
   }
 }
