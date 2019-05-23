@@ -2,6 +2,7 @@ package com.greenfoxacademy.patientpatientapp.queues;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class QueueController {
   }
 
   @GetMapping("/myqueue")
-  public ResponseEntity showUsersQueue (String username) {
-    return ResponseEntity.ok().body(queueService.createDtoFromQueue(username));
+  public ResponseEntity showUsersQueue (Authentication auth) {
+    return ResponseEntity.ok().body(queueService.createDtoFromQueue(auth.getPrincipal().toString()));
   }
 }

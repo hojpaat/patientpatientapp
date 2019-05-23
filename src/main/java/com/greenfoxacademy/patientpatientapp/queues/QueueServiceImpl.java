@@ -26,15 +26,15 @@ public class QueueServiceImpl implements QueueService {
   } */
 
   public String getDoctorsNameFromQueueId (Queue queue) {
-    return doctorsOfficeRepository.findById(queue.getId()).getUser().getName();
+    return doctorsOfficeRepository.findById(queue.getId()).getUser().getUsername();
   }
 
   public String getDoctorsAddressFromQueueId (Queue queue) {
     return doctorsOfficeRepository.findById(queue.getId()).getAddress();
   }
 
-  public QueueDTO createDtoFromQueue (String name) {
-   ApplicationUser user = userRepository.findByName(name);
+  public QueueDTO createDtoFromQueue (String userName) {
+   ApplicationUser user = userRepository.findByUsername(userName);
    Queue queue = queueRepository.findByUserId(user.getId());
    return new QueueDTO(queue.getId(), getDoctorsNameFromQueueId(queue), getDoctorsAddressFromQueueId(queue), 5, "12:20");
   }
