@@ -21,7 +21,8 @@ public class ApplicationUser {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private String name;
+  private String fullName;
+  private String username;
   private String password;
   private String role;
   private String email;
@@ -32,11 +33,4 @@ public class ApplicationUser {
   @JsonIgnore
   @OneToOne(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
   private DoctorsOffice doctorsOffice;
-
-  public ApplicationUser(String name, String password, String role, String email) {
-    this.name = name;
-    this.password = password;
-    this.role = role;
-    this.email = email;
-  }
 }
