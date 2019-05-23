@@ -1,6 +1,7 @@
 package com.greenfoxacademy.patientpatientapp.user;
 
 import com.greenfoxacademy.patientpatientapp.exception.UserException;
+import org.springframework.security.core.Authentication;
 
 public interface UserService {
 
@@ -9,4 +10,6 @@ public interface UserService {
   boolean checkIfValid(ApplicationUser user) throws UserException;
 
   ApplicationUserDto mapUserToDto(ApplicationUser applicationUser);
+  
+  ApplicationUser getLoggedInUser(Authentication auth);
 }
