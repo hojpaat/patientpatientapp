@@ -1,8 +1,6 @@
-package com.greenfoxacademy.patientpatientapp.user;
+package com.greenfoxacademy.patientpatientapp.doctorsOffice;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOffice;
+import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,22 +13,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApplicationUser {
-
+public class DoctorsOffice {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
-  String name;
-  String password;
-  String role;
-  String email;
-
-  @JsonIgnore
-  @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-  private DoctorsOffice doctorsOffice;
+  private long id;
+  private String address;
+  
+  @OneToOne(mappedBy = "doctorsOffice", cascade = CascadeType.PERSIST)
+  private ApplicationUser user;
+  
 }
