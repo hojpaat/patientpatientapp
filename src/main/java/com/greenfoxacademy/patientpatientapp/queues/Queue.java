@@ -1,5 +1,6 @@
 package com.greenfoxacademy.patientpatientapp.queues;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOffice;
 import com.greenfoxacademy.patientpatientapp.service.Service;
 import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
@@ -24,12 +25,15 @@ public class Queue {
   private long timeInMinutes;
   private Timestamp time = new Timestamp(System.currentTimeMillis());
 
+  @JsonIgnore
   @ManyToOne
   private Service service;
 
+  @JsonIgnore
   @ManyToOne
   private DoctorsOffice doctorsOffice;
 
+  @JsonIgnore
   @OneToOne
   private ApplicationUser user;
 

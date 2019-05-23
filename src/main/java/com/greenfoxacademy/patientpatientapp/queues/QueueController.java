@@ -22,12 +22,10 @@ public class QueueController {
     return ResponseEntity.ok().body(queueService.createDtoFromQueue(auth));
   }
   
-  @GetMapping("/localtime")
-  public ResponseEntity getLocalTime (){
-    Queue myQueue = queueService.getByUserId(1);
+  @GetMapping("/queues")
+  public ResponseEntity getQueuesOfDoctor (){
     
-    System.out.println("-------" + TimeService.getLeftTime(myQueue.getTime()));
-    return ResponseEntity.ok().body(myQueue.getTime());
+    return ResponseEntity.ok().body(queueService.getDoctorPatients(queueService.getByDoctorsOfficeId(1)));
     
   }
 }

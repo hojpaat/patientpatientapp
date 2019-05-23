@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class QueueServiceImpl implements QueueService {
 
@@ -47,6 +50,14 @@ public class QueueServiceImpl implements QueueService {
     return queueRepository.findByUserId(id);
   }
   
+  public List<Queue> getByDoctorsOfficeId(long id){
+    return queueRepository.findByDoctorsOffice_Id(id);
+  }
+  
+  public Queue getLastQueueFromList(List<Queue> queues){
+    return queues.get(queues.size() - 1);
+  }
+  
   public Queue changeTime(Queue queue, long minutes){
     queue.setTime(TimeService.changeWithMinutes(queue.getTime(), minutes));
     System.out.println(TimeService.getLeftTime(queue.getTime()));
@@ -55,6 +66,21 @@ public class QueueServiceImpl implements QueueService {
   
   public String getLeftTimeString(Queue queue){
     return TimeService.getLeftTime(queue.getTime());
+  }
+  
+  public QueuePatientDto createQpatientDto(Queue queue){
+    return new QueuePatientDto(
+            queue.getUser().getName(),
+            TimeService.timeHourMinutes(queue.getTime()),
+            queue.getService().getCategory());
+  }
+  
+  public List<QueuePatientDto> getDoctorPatients(List<Queue> queues){
+    List<QueuePatientDto> patients = new ArrayList<>();
+    queues.forEach(queue -> {
+      patients.add(createQpatientDto(queue));
+    });
+    return patients;
   }
   
 }

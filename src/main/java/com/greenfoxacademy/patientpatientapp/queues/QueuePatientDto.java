@@ -12,6 +12,6 @@ import lombok.Setter;
 public class QueuePatientDto {
   
   private String name;
-  private String appointmentTime;
+  private String time;
   private String category;
 }

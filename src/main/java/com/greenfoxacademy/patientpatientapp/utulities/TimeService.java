@@ -4,11 +4,12 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class TimeService {
   
-  public static LocalDateTime addLocalTime(Timestamp timestamp){
+  public static LocalDateTime convertToLocalTime(Timestamp timestamp){
     return timestamp.toLocalDateTime();
   }
   
@@ -26,5 +27,10 @@ public class TimeService {
   
   public static String getLeftTime(Timestamp timestamp){
     return createStringFromLong(timestamp.getTime() - System.currentTimeMillis());
+  }
+  
+  public static String timeHourMinutes(Timestamp timestamp){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+    return timestamp.toLocalDateTime().format(formatter);
   }
 }
