@@ -1,12 +1,12 @@
 package com.greenfoxacademy.patientpatientapp.queues;
 
-public interface QueueService {
+import org.springframework.security.core.Authentication;
 
- // Queue getQueueFromUsername (String name);
+public interface QueueService {
 
   String getDoctorsNameFromQueueId (Queue queue);
 
   String getDoctorsAddressFromQueueId (Queue queue);
 
-  QueueDTO createDtoFromQueue (String name);
+  QueueDTO createDtoFromQueue (Authentication auth);
 }

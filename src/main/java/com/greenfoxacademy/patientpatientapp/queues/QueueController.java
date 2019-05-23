@@ -18,6 +18,8 @@ public class QueueController {
 
   @GetMapping("/myqueue")
   public ResponseEntity showUsersQueue (Authentication auth) {
-    return ResponseEntity.ok().body(queueService.createDtoFromQueue(auth.getPrincipal().toString()));
+    return ResponseEntity.ok().body(queueService.createDtoFromQueue(auth));
   }
+
+  //findUserByUsername(auth.getPrincipal().toString());
 }
