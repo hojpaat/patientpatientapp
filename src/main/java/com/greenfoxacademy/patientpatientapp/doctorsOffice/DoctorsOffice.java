@@ -23,7 +23,7 @@ public class DoctorsOffice {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String address;
-  
+
   @OneToOne
   private ApplicationUser user;
   

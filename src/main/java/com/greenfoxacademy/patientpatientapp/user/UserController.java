@@ -3,6 +3,7 @@ package com.greenfoxacademy.patientpatientapp.user;
 import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOffice;
 import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOfficeService;
 import com.greenfoxacademy.patientpatientapp.exception.DoctorsOfficeException;
+import com.greenfoxacademy.patientpatientapp.exception.UserException;
 import com.greenfoxacademy.patientpatientapp.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +25,11 @@ public class UserController {
   @PostMapping("/doctorsoffice")
   public ResponseEntity saveDoctorsOffice (@RequestBody DoctorsOffice doctorsOffice) throws DoctorsOfficeException {
     return ResponseEntity.status(200).body(doctorsOfficeService.saveDoctorsOffice(doctorsOffice));
+  }
+  
+  @PostMapping("/register")
+  public ResponseEntity addUser(@RequestBody ApplicationUser user)
+          throws UserException {
+    return ResponseEntity.ok().body(userService.saveUser(user));
   }
 }
