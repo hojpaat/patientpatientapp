@@ -21,10 +21,10 @@ public class Queue {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private long time;
-  private Service service;
+ /* private Service service;
   private DoctorsOffice doctorsOffice;
   private User userId;
-
+*/
 
 
 
