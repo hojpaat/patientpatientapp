@@ -1,5 +1,12 @@
 package com.greenfoxacademy.patientpatientapp.queues;
 
-public interface QueueService {
+import java.util.List;
 
+public interface QueueService {
+  
+  List<Queue> getQueues();
+  
+  void changeQueueTime(List<Queue> queues, Long timeDifference);
+  
+  boolean deleteQueue(long id);
 }
