@@ -9,4 +9,6 @@ public interface QueueService {
   String getDoctorsAddressFromQueueId (Queue queue);
 
   QueueDTO createDtoFromQueue (Authentication auth);
+  
+  Queue getByUserId(long id);
 }

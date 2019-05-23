@@ -1,5 +1,6 @@
 package com.greenfoxacademy.patientpatientapp.queues;
 
+import com.greenfoxacademy.patientpatientapp.utulities.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -19,5 +20,14 @@ public class QueueController {
   @GetMapping("/myqueue")
   public ResponseEntity showUsersQueue (Authentication auth) {
     return ResponseEntity.ok().body(queueService.createDtoFromQueue(auth));
+  }
+  
+  @GetMapping("/localtime")
+  public ResponseEntity getLocalTime (){
+    Queue myQueue = queueService.getByUserId(1);
+    
+    System.out.println("-------" + TimeService.getLeftTime(myQueue.getTime()));
+    return ResponseEntity.ok().body(myQueue.getTime());
+    
   }
 }

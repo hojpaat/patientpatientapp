@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -21,6 +22,7 @@ public class Queue {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private long timeInMinutes;
+  private Timestamp time = new Timestamp(System.currentTimeMillis());
 
   @ManyToOne
   private Service service;
