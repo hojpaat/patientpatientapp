@@ -23,9 +23,8 @@ public class QueueController {
   }
   
   @GetMapping("/queues")
-  public ResponseEntity getQueuesOfDoctor (){
-    
-    return ResponseEntity.ok().body(queueService.getDoctorPatients(queueService.getByDoctorsOfficeId(1)));
+  public ResponseEntity getQueuesOfDoctor (Authentication auth){
+    return ResponseEntity.ok().body(queueService.listDoctorsPatients(auth));
     
   }
 }

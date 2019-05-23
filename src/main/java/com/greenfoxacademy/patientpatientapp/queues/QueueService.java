@@ -19,4 +19,6 @@ public interface QueueService {
   Queue getLastQueueFromList(List<Queue> queues);
   
   List<QueuePatientDto> getDoctorPatients(List<Queue> queues);
+  
+  List<QueuePatientDto> listDoctorsPatients(Authentication auth);
 }

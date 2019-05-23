@@ -3,6 +3,7 @@ package com.greenfoxacademy.patientpatientapp.queues;
 import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOfficeRepository;
 import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
 import com.greenfoxacademy.patientpatientapp.user.UserRepository;
+import com.greenfoxacademy.patientpatientapp.user.UserService;
 import com.greenfoxacademy.patientpatientapp.utulities.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,14 +18,17 @@ public class QueueServiceImpl implements QueueService {
   private QueueRepository queueRepository;
   private DoctorsOfficeRepository doctorsOfficeRepository;
   private UserRepository userRepository;
+  private UserService userService;
 
   @Autowired
   public QueueServiceImpl(QueueRepository queueRepository,
                           DoctorsOfficeRepository doctorsOfficeRepository,
-                          UserRepository userRepository) {
+                          UserRepository userRepository,
+                          UserService userService) {
     this.queueRepository = queueRepository;
     this.doctorsOfficeRepository = doctorsOfficeRepository;
     this.userRepository = userRepository;
+    this.userService = userService;
   }
 
   public String getDoctorsNameFromQueueId (Queue queue) {
@@ -36,14 +40,10 @@ public class QueueServiceImpl implements QueueService {
   }
 
   public QueueDTO createDtoFromQueue (Authentication auth) {
-   ApplicationUser user = userRepository.findByUsername(getLoggedInUser(auth));
+   ApplicationUser user = userService.getLoggedInUser(auth);
    Queue queue = queueRepository.findByUserId(user.getId());
    return new QueueDTO(queue.getId(), getDoctorsNameFromQueueId(queue),
            getDoctorsAddressFromQueueId(queue), 5, "12:20");
-  }
-
-  public String getLoggedInUser(Authentication auth) {
-    return userRepository.findByUsername(auth.getPrincipal().toString()).getUsername();
   }
   
   public Queue getByUserId(long id){
@@ -81,6 +81,10 @@ public class QueueServiceImpl implements QueueService {
       patients.add(createQpatientDto(queue));
     });
     return patients;
+  }
+  
+  public List<QueuePatientDto> listDoctorsPatients(Authentication auth){
+    return getDoctorPatients(getByDoctorsOfficeId(userService.getLoggedInUser(auth).getDoctorsOffice().getId()));
   }
   
 }
