@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Service {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
-  String cathegory;
-  long timeInMinutes;
+  private long id;
+  private String cathegory;
+  private long timeInMinutes;
 }
