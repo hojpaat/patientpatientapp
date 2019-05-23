@@ -33,4 +33,11 @@ public class ApplicationUser {
   @JsonIgnore
   @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
   private DoctorsOffice doctorsOffice;
+
+  public ApplicationUser(String name, String password, String role, String email) {
+    this.name = name;
+    this.password = password;
+    this.role = role;
+    this.email = email;
+  }
 }
