@@ -20,6 +20,4 @@ public class QueueController {
   public ResponseEntity showUsersQueue (Authentication auth) {
     return ResponseEntity.ok().body(queueService.createDtoFromQueue(auth));
   }
-
-  //findUserByUsername(auth.getPrincipal().toString());
 }

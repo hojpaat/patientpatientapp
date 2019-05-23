@@ -11,5 +11,5 @@ public interface DoctorsOfficeRepository extends CrudRepository<DoctorsOffice, L
 
   DoctorsOffice findByAddress(String address);
 
-
+  List<DoctorsOffice> findAll();
 }

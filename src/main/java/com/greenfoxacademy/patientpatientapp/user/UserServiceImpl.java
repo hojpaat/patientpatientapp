@@ -1,6 +1,7 @@
 package com.greenfoxacademy.patientpatientapp.user;
 
 import com.greenfoxacademy.patientpatientapp.exception.UserException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,11 @@ public class UserServiceImpl implements UserService {
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
-  public ApplicationUser saveUser(ApplicationUser user)
+  public ApplicationUserDto saveUser(ApplicationUser user)
           throws UserException {
     if (userRepository.findByUsername(user.getUsername()) == null && checkIfValid(user)) {
       user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-      return userRepository.save(user);
+      return mapUserToDto(userRepository.save(user));
     }
     throw new UserException("Username already taken, please choose an other one.");
   }
@@ -37,5 +38,10 @@ public class UserServiceImpl implements UserService {
       throw new UserException("Missing parameter(s): password!");
     }
     return true;
+  }
+
+  public ApplicationUserDto mapUserToDto(ApplicationUser applicationUser) {
+    ModelMapper modelMapper = new ModelMapper();
+    return modelMapper.map(applicationUser, ApplicationUserDto.class);
   }
 }
