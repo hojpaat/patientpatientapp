@@ -1,5 +1,6 @@
 package com.greenfoxacademy.patientpatientapp.doctorsOffice;
 
+import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,6 @@ public interface DoctorsOfficeRepository extends CrudRepository<DoctorsOffice, L
   DoctorsOffice findByAddress(String address);
 
   List<DoctorsOffice> findAll();
+  
+  DoctorsOffice findByUser(ApplicationUser user);
 }

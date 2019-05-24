@@ -25,4 +25,10 @@ public class QueueDTO {
     this.in_line = in_line;
     this.remaining_time = remaining_time;
   }
+  
+  public QueueDTO(String doctor, String category){
+    this.doctor = doctor;
+    this.category =category;
+  }
+  
 }

@@ -1,5 +1,6 @@
 package com.greenfoxacademy.patientpatientapp.queues;
 
+import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOffice;
 import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOfficeRepository;
 import com.greenfoxacademy.patientpatientapp.service.ServiceService;
 import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
@@ -94,11 +95,12 @@ public class QueueServiceImpl implements QueueService {
   public Queue createNewQueue(Authentication auth, QueueDTO queueDTO){
     Queue newQueue = new Queue();
     ApplicationUser user = userService.getLoggedInUser(auth);
-    ApplicationUser doctor = userRepository.findByUsername(queueDTO.getDoctor());
+    ApplicationUser doctor = userRepository.findByName(queueDTO.getDoctor());
+    DoctorsOffice doctorsOffice = doctorsOfficeRepository.findByUser(doctor);
     newQueue.setUser(user);
-    newQueue.setDoctorsOffice(doctor.getDoctorsOffice());
+    newQueue.setDoctorsOffice(doctorsOffice);
     newQueue.setService(serviceService.findByCategory(queueDTO.getCategory()));
-    Queue lastQueue =  getLastQueueFromList(getByDoctorsOfficeId(doctor.getDoctorsOffice().getId()));
+    Queue lastQueue =  getLastQueueFromList(getByDoctorsOfficeId(doctorsOffice.getId()));
     newQueue.setTime(TimeService.changeWithMinutes(lastQueue.getTime(), lastQueue.getService().getTimeInMinutes()));
     return queueRepository.save(newQueue);
     
