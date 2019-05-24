@@ -2,6 +2,7 @@ package com.greenfoxacademy.patientpatientapp.doctorsOffice;
 
 import com.greenfoxacademy.patientpatientapp.exception.DoctorsOfficeException;
 import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
+import com.greenfoxacademy.patientpatientapp.user.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.net.Authenticator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +31,12 @@ public class DoctorsOfficeServiceImplTest {
   private DoctorsOfficeRepository doctorsOfficeRepository;
 
   private DoctorsOfficeServiceImpl doctorsOfficeServiceImpl;
+  private UserService userService;
 
   @Before
   public void init() {
     MockitoAnnotations.initMocks(this);
-    doctorsOfficeServiceImpl = new DoctorsOfficeServiceImpl(doctorsOfficeRepository);
+    doctorsOfficeServiceImpl = new DoctorsOfficeServiceImpl(doctorsOfficeRepository, userService);
     testDoctor1 = new ApplicationUser();
     testDoctor1.setName("Dr Duna");
     testDoctor2 = new ApplicationUser();
@@ -48,7 +51,7 @@ public class DoctorsOfficeServiceImplTest {
   public void saveDoctorsOffice_exsisting_throwsException() throws DoctorsOfficeException {
     when(doctorsOfficeRepository.findByAddress(testDoctorsOffice1.getAddress()))
             .thenReturn(testDoctorsOffice1);
-    doctorsOfficeServiceImpl.saveDoctorsOffice(testDoctorsOffice1);
+    doctorsOfficeServiceImpl.saveDoctorsOffice(testDoctorsOffice1, new ApplicationUser());
   }
 
   @Test
@@ -56,7 +59,7 @@ public class DoctorsOfficeServiceImplTest {
     when(doctorsOfficeRepository.findByAddress(testDoctorsOffice1.getAddress())).thenReturn(null);
     when(doctorsOfficeRepository.save(testDoctorsOffice1)).thenReturn(testDoctorsOffice1);
     assertEquals(testDoctorsOffice1.getAddress(),
-            doctorsOfficeServiceImpl.saveDoctorsOffice(testDoctorsOffice1).getAddress());
+            doctorsOfficeServiceImpl.saveDoctorsOffice(testDoctorsOffice1, new ApplicationUser()).getAddress());
   }
 
   @Test

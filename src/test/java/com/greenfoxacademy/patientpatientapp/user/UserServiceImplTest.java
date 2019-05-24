@@ -37,4 +37,6 @@ public class UserServiceImplTest {
     when(userRepository.findByUsername(testUser1.getUsername())).thenReturn(testUser1);
     userServiceImpl.saveUser(testUser1);
   }
+  
+  
 }
