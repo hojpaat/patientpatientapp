@@ -29,7 +29,6 @@ public class ApplicationUser {
   @OneToOne
   private Queue queue;
 
-  @JsonIgnore
   @OneToOne(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
   private DoctorsOffice doctorsOffice;
 }

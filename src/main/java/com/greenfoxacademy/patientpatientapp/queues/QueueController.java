@@ -31,6 +31,6 @@ public class QueueController {
   
   @PostMapping("/queue")
   public ResponseEntity saveQueue(@RequestBody QueueDTO queueDTO, Authentication auth){
-    return ResponseEntity.status(204).body(queueService.createNewQueue(auth, queueDTO));
+    return ResponseEntity.status(200).body(queueService.createNewQueue(auth, queueDTO));
   }
 }
