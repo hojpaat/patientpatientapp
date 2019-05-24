@@ -14,7 +14,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Service {
+@Table(name = "service")
+public class ApplicationService {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;

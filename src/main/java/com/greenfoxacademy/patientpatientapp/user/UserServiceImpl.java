@@ -3,6 +3,7 @@ package com.greenfoxacademy.patientpatientapp.user;
 import com.greenfoxacademy.patientpatientapp.exception.UserException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,13 @@ public class UserServiceImpl implements UserService {
   public ApplicationUserDto mapUserToDto(ApplicationUser applicationUser) {
     ModelMapper modelMapper = new ModelMapper();
     return modelMapper.map(applicationUser, ApplicationUserDto.class);
+  }
+  
+  public ApplicationUser getLoggedInUser(Authentication auth) {
+    return userRepository.findByUsername(auth.getPrincipal().toString());
+  }
+  
+  public ApplicationUser getUserByName(String name){
+    return userRepository.findByUsername(name);
   }
 }
