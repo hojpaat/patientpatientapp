@@ -9,5 +9,4 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DoctorDto {
   private String name;
-  
 }
