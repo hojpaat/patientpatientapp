@@ -6,4 +6,3 @@ public class UserException extends Exception {
     super(message);
   }
 }
-

@@ -36,5 +36,4 @@ public class Queue {
   @JsonIgnore
   @OneToOne
   private ApplicationUser user;
-
 }

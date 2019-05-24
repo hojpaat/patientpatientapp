@@ -77,6 +77,4 @@ public class DoctorsOfficeServiceImplTest {
     assertEquals("DoctorDto",
             doctorsOfficeServiceImpl.getDoctors().get(1).getClass().getSimpleName());
   }
-
-
 }

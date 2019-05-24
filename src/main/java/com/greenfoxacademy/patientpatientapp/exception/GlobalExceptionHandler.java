@@ -15,4 +15,11 @@ public class GlobalExceptionHandler {
   ErrorMessage handleUserException(UserException ex) {
     return new ErrorMessage(ex.getMessage());
   }
+
+  @ResponseBody
+  @ExceptionHandler(DoctorsOfficeException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  ErrorMessage handleDoctorsOfficeException(DoctorsOfficeException ex) {
+    return new ErrorMessage(ex.getMessage());
+  }
 }

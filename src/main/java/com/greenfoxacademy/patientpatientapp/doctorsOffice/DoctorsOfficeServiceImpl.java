@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class DoctorsOfficeServiceImpl implements DoctorsOfficeService {
   }
   
   public boolean isDoctorOfficeUnregistered(DoctorsOffice doctorsOffice){
-    return doctorsOfficeRepository.findByAddress(doctorsOffice.getAddress()) == null ? true : false;
+    return doctorsOfficeRepository.findByAddress(doctorsOffice.getAddress()) == null;
   }
   
   public DoctorsOffice saveDoctorsOffice(DoctorsOffice doctorsOffice, ApplicationUser user) throws DoctorsOfficeException {
