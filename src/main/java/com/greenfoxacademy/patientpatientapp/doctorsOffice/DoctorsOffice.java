@@ -26,5 +26,4 @@ public class DoctorsOffice {
 
   @OneToOne
   private ApplicationUser user;
-  
 }
