@@ -1,9 +1,5 @@
 package com.greenfoxacademy.patientpatientapp.doctorsOffice;
 
-import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorDto;
-import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOffice;
-import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOfficeRepository;
-import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOfficeServiceImpl;
 import com.greenfoxacademy.patientpatientapp.exception.DoctorsOfficeException;
 import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
 import org.junit.Before;
