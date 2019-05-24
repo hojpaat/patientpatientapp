@@ -12,4 +12,6 @@ public interface UserService {
   ApplicationUserDto mapUserToDto(ApplicationUser applicationUser);
   
   ApplicationUser getLoggedInUser(Authentication auth);
+  
+  ApplicationUser getUserByName(String name);
 }

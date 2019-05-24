@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "service")
 public class ApplicationService {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

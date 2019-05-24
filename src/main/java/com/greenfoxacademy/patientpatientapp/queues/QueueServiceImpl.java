@@ -1,6 +1,7 @@
 package com.greenfoxacademy.patientpatientapp.queues;
 
 import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOfficeRepository;
+import com.greenfoxacademy.patientpatientapp.service.ServiceService;
 import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
 import com.greenfoxacademy.patientpatientapp.user.UserRepository;
 import com.greenfoxacademy.patientpatientapp.user.UserService;
@@ -20,16 +21,19 @@ public class QueueServiceImpl implements QueueService {
   private DoctorsOfficeRepository doctorsOfficeRepository;
   private UserRepository userRepository;
   private UserService userService;
+  private ServiceService serviceService;
 
   @Autowired
   public QueueServiceImpl(QueueRepository queueRepository,
                           DoctorsOfficeRepository doctorsOfficeRepository,
                           UserRepository userRepository,
-                          UserService userService) {
+                          UserService userService,
+                          ServiceService serviceService) {
     this.queueRepository = queueRepository;
     this.doctorsOfficeRepository = doctorsOfficeRepository;
     this.userRepository = userRepository;
     this.userService = userService;
+    this.serviceService = serviceService;
   }
 
   public String getDoctorsNameFromQueueId (Queue queue) {
@@ -88,12 +92,13 @@ public class QueueServiceImpl implements QueueService {
     return getDoctorPatients(getByDoctorsOfficeId(userService.getLoggedInUser(auth).getDoctorsOffice().getId()));
   }
   
-  public Queue createNewQueue(Authentication auth, String doctorName){
+  public Queue createNewQueue(Authentication auth, QueueDTO queueDTO){
     Queue newQueue = new Queue();
     ApplicationUser user = userService.getLoggedInUser(auth);
-    ApplicationUser doctor = userRepository.findByUsername(doctorName);
+    ApplicationUser doctor = userRepository.findByUsername(queueDTO.getDoctor());
     newQueue.setUser(user);
     newQueue.setDoctorsOffice(doctor.getDoctorsOffice());
+    newQueue.setService(serviceService.findByCategory(queueDTO.getCategory()));
     Queue lastQueue =  getLastQueueFromList(getByDoctorsOfficeId(doctor.getDoctorsOffice().getId()));
     newQueue.setTime(TimeService.changeWithMinutes(lastQueue.getTime(), lastQueue.getService().getTimeInMinutes()));
     return queueRepository.save(newQueue);

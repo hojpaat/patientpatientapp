@@ -22,5 +22,5 @@ public interface QueueService {
   
   List<QueuePatientDto> listDoctorsPatients(Authentication auth);
   
-  Queue createNewQueue(Authentication auth, String doctorName);
+  Queue createNewQueue(Authentication auth, QueueDTO queueDTO);
 }

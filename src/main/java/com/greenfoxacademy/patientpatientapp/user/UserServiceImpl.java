@@ -49,4 +49,8 @@ public class UserServiceImpl implements UserService {
   public ApplicationUser getLoggedInUser(Authentication auth) {
     return userRepository.findByUsername(auth.getPrincipal().toString());
   }
+  
+  public ApplicationUser getUserByName(String name){
+    return userRepository.findByUsername(name);
+  }
 }
