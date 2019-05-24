@@ -6,4 +6,3 @@ public class DoctorsOfficeException extends Exception {
     super(message);
   }
 }
-

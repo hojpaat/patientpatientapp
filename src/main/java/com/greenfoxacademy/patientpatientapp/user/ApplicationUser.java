@@ -1,6 +1,5 @@
 package com.greenfoxacademy.patientpatientapp.user;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOffice;
 import com.greenfoxacademy.patientpatientapp.queues.Queue;
