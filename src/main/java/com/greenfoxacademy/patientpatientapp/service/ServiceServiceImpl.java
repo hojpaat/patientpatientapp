@@ -11,4 +11,8 @@ public class ServiceServiceImpl implements ServiceService {
   public ServiceServiceImpl(ServiceRepository serviceRepository){
     this.serviceRepository = serviceRepository;
   }
+  
+  public ApplicationService findByCategory(String category){
+    return serviceRepository.findByCategory(category);
+  }
 }

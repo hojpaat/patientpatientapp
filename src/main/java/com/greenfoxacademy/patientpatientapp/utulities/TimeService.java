@@ -14,8 +14,7 @@ public class TimeService {
   }
   
   public static Timestamp changeWithMinutes(Timestamp timestamp, long minutes){
-    timestamp.setTime(timestamp.getTime() + ( minutes * 60000 ));
-    return timestamp;
+    return new Timestamp(timestamp.getTime() + ( minutes * 60000 ));
   }
   
   public static String createStringFromLong(long millis){

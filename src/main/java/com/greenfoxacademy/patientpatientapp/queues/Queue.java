@@ -2,7 +2,7 @@ package com.greenfoxacademy.patientpatientapp.queues;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.greenfoxacademy.patientpatientapp.doctorsOffice.DoctorsOffice;
-import com.greenfoxacademy.patientpatientapp.service.Service;
+import com.greenfoxacademy.patientpatientapp.service.ApplicationService;
 import com.greenfoxacademy.patientpatientapp.user.ApplicationUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class Queue {
 
   @JsonIgnore
   @ManyToOne
-  private Service service;
+  private ApplicationService service;
 
   @JsonIgnore
   @ManyToOne

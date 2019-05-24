@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +86,18 @@ public class QueueServiceImpl implements QueueService {
   
   public List<QueuePatientDto> listDoctorsPatients(Authentication auth){
     return getDoctorPatients(getByDoctorsOfficeId(userService.getLoggedInUser(auth).getDoctorsOffice().getId()));
+  }
+  
+  public Queue createNewQueue(Authentication auth, String doctorName){
+    Queue newQueue = new Queue();
+    ApplicationUser user = userService.getLoggedInUser(auth);
+    ApplicationUser doctor = userRepository.findByUsername(doctorName);
+    newQueue.setUser(user);
+    newQueue.setDoctorsOffice(doctor.getDoctorsOffice());
+    Queue lastQueue =  getLastQueueFromList(getByDoctorsOfficeId(doctor.getDoctorsOffice().getId()));
+    newQueue.setTime(TimeService.changeWithMinutes(lastQueue.getTime(), lastQueue.getService().getTimeInMinutes()));
+    return queueRepository.save(newQueue);
+    
   }
   
 }
